@@ -1,4 +1,4 @@
-package entity;
+package come.amin.entity;
 
 import javax.persistence.*;
 

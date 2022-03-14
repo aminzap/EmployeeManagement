@@ -1,7 +1,9 @@
-package entity;
+package come.amin.entity;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -27,6 +29,10 @@ public class Employee {
     @Basic
     @Column(name = "salary")
     private Integer salary;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "dependent_id")
+    private List<Dependent> dependents;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "job_id")
@@ -132,6 +138,21 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public List<Dependent> getDependents() {
+        return dependents;
+    }
+
+    public void setDependents(List<Dependent> dependents) {
+        this.dependents = dependents;
+    }
+
+    public void addDependent(Dependent dependent){
+        if (dependents==null){
+            dependents=new ArrayList<>();
+        }
+        dependents.add(dependent);
     }
 
     @Override

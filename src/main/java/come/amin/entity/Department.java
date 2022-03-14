@@ -1,4 +1,4 @@
-package entity;
+package come.amin.entity;
 
 import javax.persistence.*;
 
@@ -11,9 +11,10 @@ public class Department {
     @Basic
     @Column(name = "department_name")
     private String departmentName;
-    @Basic
-    @Column(name = "location_id")
-    private Integer locationId;
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     public int getDepartmentId() {
         return departmentId;
@@ -31,12 +32,19 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public Integer getLocationId() {
-        return locationId;
+    public Department() {
     }
 
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     @Override
@@ -49,7 +57,7 @@ public class Department {
         if (departmentId != that.departmentId) return false;
         if (departmentName != null ? !departmentName.equals(that.departmentName) : that.departmentName != null)
             return false;
-        if (locationId != null ? !locationId.equals(that.locationId) : that.locationId != null) return false;
+        if (location != null ? !location.equals(that.location) : that.location != null) return false;
 
         return true;
     }
@@ -58,7 +66,7 @@ public class Department {
     public int hashCode() {
         int result = departmentId;
         result = 31 * result + (departmentName != null ? departmentName.hashCode() : 0);
-        result = 31 * result + (locationId != null ? locationId.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package entity;
+package come.amin.entity;
 
 import javax.persistence.*;
 
@@ -20,9 +20,10 @@ public class Location {
     @Basic
     @Column(name = "province")
     private String province;
-    @Basic
-    @Column(name = "country_id")
-    private Integer countryId;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "country_id")
+    private Country country;
 
     public int getLocationId() {
         return locationId;
@@ -63,14 +64,24 @@ public class Location {
     public void setProvince(String province) {
         this.province = province;
     }
-
-    public Integer getCountryId() {
-        return countryId;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryId(Integer countryId) {
-        this.countryId = countryId;
+    public void setCountry(Country country) {
+        this.country = country;
     }
+
+    public Location() {
+    }
+
+    public Location(String streetAddress, String postalCode, String city, String province) {
+        this.streetAddress = streetAddress;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.province = province;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -85,7 +96,7 @@ public class Location {
         if (postalCode != null ? !postalCode.equals(location.postalCode) : location.postalCode != null) return false;
         if (city != null ? !city.equals(location.city) : location.city != null) return false;
         if (province != null ? !province.equals(location.province) : location.province != null) return false;
-        if (countryId != null ? !countryId.equals(location.countryId) : location.countryId != null) return false;
+        if (country != null ? !country.equals(location.country) : location.country != null) return false;
 
         return true;
     }
@@ -97,7 +108,7 @@ public class Location {
         result = 31 * result + (postalCode != null ? postalCode.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (province != null ? province.hashCode() : 0);
-        result = 31 * result + (countryId != null ? countryId.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
 }

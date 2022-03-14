@@ -1,6 +1,8 @@
-package entity;
+package come.amin.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Country {
@@ -11,6 +13,16 @@ public class Country {
     @Basic
     @Column(name = "country_name")
     private String countryName;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "country")
+    private List<Location>locations;
+
+    public Country(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public Country() {
+    }
 
     public int getCountryId() {
         return countryId;
@@ -39,6 +51,13 @@ public class Country {
         if (countryName != null ? !countryName.equals(country.countryName) : country.countryName != null) return false;
 
         return true;
+    }
+
+    public void addLocation(Location location){
+        if (locations==null){
+            locations=new ArrayList<>();
+        }
+        locations.add(location);
     }
 
     @Override
