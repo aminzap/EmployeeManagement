@@ -1,8 +1,9 @@
-package com.amin.controller;
+package com.amin.controller.rest;
 
 
 import com.amin.entity.Employee;
 import com.amin.service.EmployeeService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+
+
 
     @GetMapping(value = "/employee")
     public List<Employee> findAll(){

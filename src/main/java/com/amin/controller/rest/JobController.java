@@ -1,4 +1,4 @@
-package com.amin.controller;
+package com.amin.controller.rest;
 
 import com.amin.entity.Job;
 import com.amin.service.JobService;
@@ -34,7 +34,7 @@ public class JobController {
         }
     }
 
-    @PostMapping(value = "/job")
+    @PostMapping(value = "/api")
     public Job save (@RequestBody Job job){
         job.setJobId(0);
         jobService.save(job);

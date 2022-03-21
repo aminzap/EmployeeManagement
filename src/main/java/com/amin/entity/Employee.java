@@ -1,6 +1,7 @@
 package com.amin.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.sql.*;
@@ -27,7 +28,8 @@ public class Employee {
     private String phoneNumber;
     @Basic
     @Column(name = "hire_date")
-    private Timestamp hireDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String hireDate;
     @Basic
     @Column(name = "salary")
     private Integer salary;
@@ -54,7 +56,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, String phoneNumber, Timestamp hireDate, Integer salary, Job job) {
+    public Employee(String firstName, String lastName, String email, String phoneNumber, String hireDate, Integer salary, Job job) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -145,11 +147,11 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public Timestamp getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Timestamp hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 
@@ -174,4 +176,16 @@ public class Employee {
         return Objects.hash(employeeId, firstName, lastName, email, phoneNumber, hireDate, salary, job, manager, employees, department);
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", hireDate=" + hireDate +
+                ", salary=" + salary +
+                '}';
+    }
 }

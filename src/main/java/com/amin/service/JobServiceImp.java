@@ -2,6 +2,7 @@ package com.amin.service;
 
 import com.amin.entity.Job;
 import com.amin.repository.JobRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class JobServiceImp implements JobService {
     JobRepository jobRepository;
 
+    @Autowired
     public JobServiceImp(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
     }

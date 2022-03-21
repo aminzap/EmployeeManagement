@@ -2,6 +2,7 @@ package com.amin.service;
 
 import com.amin.entity.Dependent;
 import com.amin.repository.DependentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class DependentServiceImp implements DependentService {
     DependentRepository dependentRepository;
 
+    @Autowired
     public DependentServiceImp(DependentRepository dependentRepository) {
         this.dependentRepository = dependentRepository;
     }

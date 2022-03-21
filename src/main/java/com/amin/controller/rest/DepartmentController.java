@@ -1,4 +1,4 @@
-package com.amin.controller;
+package com.amin.controller.rest;
 
 
 import com.amin.entity.Department;

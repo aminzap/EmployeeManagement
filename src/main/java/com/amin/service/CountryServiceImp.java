@@ -1,6 +1,7 @@
 package com.amin.service;
 
 import com.amin.entity.Country;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.amin.repository.CountryRepository;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class CountryServiceImp implements CountryService{
     CountryRepository countryRepository;
 
+    @Autowired
     public CountryServiceImp(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
     }

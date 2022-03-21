@@ -2,6 +2,7 @@ package com.amin.service;
 
 import com.amin.entity.Location;
 import com.amin.repository.LocationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class LocationServiceImp implements LocationService{
     LocationRepository locationRepository;
 
+    @Autowired
     public LocationServiceImp(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }

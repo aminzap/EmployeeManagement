@@ -2,6 +2,7 @@ package com.amin.service;
 
 import com.amin.entity.Department;
 import com.amin.repository.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class DepartmentServiceImp implements DepartmentService{
     DepartmentRepository departmentRepository;
 
+    @Autowired
     public DepartmentServiceImp(DepartmentRepository departmentRepository) {
         this.departmentRepository = departmentRepository;
     }
