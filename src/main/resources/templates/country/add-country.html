@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Country</title>
+</head>
+<body>
+<h3>Add Country</h3>
+<div class="container">
+    <hr>
+
+    <form action="#" th:action="@{/country/save}"
+          th:object="${country}" method="POST">
+        <input type="text" th:field="*{countryName}" class="form-control mb-4 col-4" placeholder="Job Title">
+        <button type="submit" class="btn btn-success col-2"> Save</button>
+    </form>
+    <hr>
+</div>
+
+<a th:href="@{/country/list}" class="btn btn-secondary ml-3" type="button">Back to Country list</a>
+</body>
+</html>

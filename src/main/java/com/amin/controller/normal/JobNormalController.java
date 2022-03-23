@@ -1,0 +1,50 @@
+package com.amin.controller.normal;
+
+import com.amin.entity.Job;
+import com.amin.service.JobService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/job")
+public class JobNormalController {
+    JobService jobService;
+
+    public JobNormalController(JobService jobService) {
+        this.jobService = jobService;
+    }
+
+    @GetMapping("/list")
+    public String jobList(Model model){
+        List <Job> jobList=jobService.findAll();
+        model.addAttribute("jobs",jobList);
+        return "/job/list-job";
+    }
+
+    @GetMapping("/add")
+    public String addJob(Model model){
+        Job job=new Job();
+        model.addAttribute("job",job);
+        return "job/add-job";
+    }
+    @PostMapping("/save")
+    public String saveJob(@ModelAttribute ("job") Job job){
+        jobService.save(job);
+        return "redirect:/job/list";
+    }
+    @GetMapping("/update")
+    public String updateJob(@RequestParam("jobId") int id,Model model){
+        Optional<Job>job=jobService.findById(id);
+        model.addAttribute("job",job);
+        return "job/job-form";
+    }
+    @GetMapping("/delete")
+    public String deleteJob(@RequestParam("jobId") int id){
+        jobService.deleteById(id);
+        return "redirect:/job/list";
+    }
+}

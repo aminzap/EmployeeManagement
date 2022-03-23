@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
-    <title>Employees</title>
+    <title>Job</title>
 </head>
-<body>
+<body class="px-2">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" th:href="@{/}">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,46 +26,42 @@
     </div>
 </nav>
 
-
-
-<div class="px-2">
-    <h3 class="mt-1">Employee List</h3>
+<div>
+    <h3>Location List</h3>
     <hr>
-    <a th:href="@{/employee/add}" class="btn btn-primary btn-sm mb-3">Add Employee</a>
+    <a th:href="@{/location/add}" class="btn btn-primary btn-sm mb-3">Add Location title</a>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Salary</th>
-            <th>Hire date</th>
-            <th>Department</th>
+            <th>Street Name</th>
+            <th>Postal Code</th>
+            <th>City</th>
+            <th>Province/State</th>
+            <th>Country</th>
             <th>Action</th>
         </tr>
+
         </thead>
         <tbody>
-        <tr th:each="tempEmployee : ${employees}" >
-            <td th:text=" ${tempEmployee.employeeId}"/>
-            <td th:text=" ${tempEmployee.firstName}"/>
-            <td th:text=" ${tempEmployee.lastName}"/>
-            <td th:text=" ${tempEmployee.email}"/>
-            <td th:text=" ${tempEmployee.salary}"/>
-            <td th:text=" ${tempEmployee.hireDate}"/>
-            <td th:text="${tempEmployee.department.departmentName}"/>
+        <tr th:each="theLocation:${locations}">
+            <td th:text="${theLocation.locationId}" />
+            <td th:text="${theLocation.streetAddress}" />
+            <td th:text="${theLocation.postalCode}" />
+            <td th:text="${theLocation.city}" />
+            <td th:text="${theLocation.province}" />
+            <td th:text="${theLocation.country.countryName}" />
             <td>
-                <a th:href="@{/employee/update(employeeId=${tempEmployee.employeeId})}"
+                <a th:href="@{/location/update(locationId=${theLocation.locationId})}"
                    class="btn btn-primary btn-sm">Update</a>
 
-                <a th:href="@{/employee/delete(employeeId=${tempEmployee.employeeId})}"
-                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure to delete this employee?')))return false">Delete</a>
+                <a th:href="@{/location/delete(locationId=${theLocation.locationId})}"
+                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure to delete this Location?')))return false">Delete</a>
             </td>
         </tr>
         </tbody>
-
-    </table></div>
-
+    </table>
+</div>
 
 </body>
 </html>

@@ -27,45 +27,41 @@
 </nav>
 
 
-
 <div class="px-2">
-    <h3 class="mt-1">Employee List</h3>
+    <h3>Dependent List</h3>
     <hr>
-    <a th:href="@{/employee/add}" class="btn btn-primary btn-sm mb-3">Add Employee</a>
+    <a th:href="@{/dependent/add}" class="btn btn-primary btn-sm mb-3">Add Dependent</a>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Email</th>
-            <th>Salary</th>
-            <th>Hire date</th>
-            <th>Department</th>
+            <th>Relationship</th>
+            <th>Employee</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tempEmployee : ${employees}" >
-            <td th:text=" ${tempEmployee.employeeId}"/>
-            <td th:text=" ${tempEmployee.firstName}"/>
-            <td th:text=" ${tempEmployee.lastName}"/>
-            <td th:text=" ${tempEmployee.email}"/>
-            <td th:text=" ${tempEmployee.salary}"/>
-            <td th:text=" ${tempEmployee.hireDate}"/>
-            <td th:text="${tempEmployee.department.departmentName}"/>
+        <tr th:each="tempDependents : ${dependents}" >
+            <td th:text=" ${tempDependents.dependentId}"/>
+            <td th:text=" ${tempDependents.firstName}"/>
+            <td th:text=" ${tempDependents.lastName}"/>
+            <td th:text=" ${tempDependents.relationship}"/>
+            <td th:text=" ${tempDependents.employee.employeeId}"/>
             <td>
-                <a th:href="@{/employee/update(employeeId=${tempEmployee.employeeId})}"
+                <a th:href="@{/dependent/update(dependentId=${tempDependents.dependentId})}"
                    class="btn btn-primary btn-sm">Update</a>
 
-                <a th:href="@{/employee/delete(employeeId=${tempEmployee.employeeId})}"
-                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure to delete this employee?')))return false">Delete</a>
+                <a th:href="@{/employee/delete(dependentId=${tempDependents.dependentId})}"
+                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure to delete this dependent?')))return false">Delete</a>
             </td>
         </tr>
         </tbody>
 
-    </table></div>
+    </table>
 
+</div>
 
 </body>
 </html>
