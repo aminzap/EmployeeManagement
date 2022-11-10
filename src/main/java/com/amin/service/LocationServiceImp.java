@@ -1,7 +1,7 @@
 package com.amin.service;
 
-import com.amin.entity.Location;
-import com.amin.repository.LocationRepository;
+import com.amin.domain.entity.Location;
+import com.amin.domain.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LocationServiceImp implements LocationService{
+public class LocationServiceImp implements LocationService {
     LocationRepository locationRepository;
 
     @Autowired
@@ -24,10 +24,10 @@ public class LocationServiceImp implements LocationService{
 
     @Override
     public Optional<Location> findById(int id) {
-        if (locationRepository.findById(id).isPresent()){
-          return locationRepository.findById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for finding: "+id);
+        if (locationRepository.findById(id).isPresent()) {
+            return locationRepository.findById(id);
+        } else {
+            throw new RuntimeException("This id is not valid for finding: " + id);
         }
     }
 
@@ -38,10 +38,10 @@ public class LocationServiceImp implements LocationService{
 
     @Override
     public void deleteById(int id) {
-        if (locationRepository.findById(id).isPresent()){
+        if (locationRepository.findById(id).isPresent()) {
             locationRepository.deleteById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for deleting: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for deleting: " + id);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.amin.service;
 
-import com.amin.entity.Job;
-import com.amin.repository.JobRepository;
+import com.amin.domain.entity.Job;
+import com.amin.domain.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +24,10 @@ public class JobServiceImp implements JobService {
 
     @Override
     public Optional<Job> findById(int id) {
-        if (jobRepository.findById(id).isPresent()){
+        if (jobRepository.findById(id).isPresent()) {
             return jobRepository.findById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for finding: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for finding: " + id);
         }
     }
 
@@ -38,10 +38,10 @@ public class JobServiceImp implements JobService {
 
     @Override
     public void deleteById(int id) {
-        if (jobRepository.findById(id).isPresent()){
+        if (jobRepository.findById(id).isPresent()) {
             jobRepository.deleteById(id);
-        }else{
-            throw new RuntimeException("This id is not valid for deleting: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for deleting: " + id);
         }
     }
 }

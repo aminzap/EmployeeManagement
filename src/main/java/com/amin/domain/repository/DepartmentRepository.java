@@ -1,0 +1,8 @@
+package com.amin.domain.repository;
+
+import com.amin.domain.entity.Department;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface DepartmentRepository extends JpaRepository<Department, Integer> {
+}

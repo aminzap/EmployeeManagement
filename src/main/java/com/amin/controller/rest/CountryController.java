@@ -1,10 +1,16 @@
 package com.amin.controller.rest;
 
 
-import com.amin.entity.Country;
+import com.amin.domain.entity.Country;
 import com.amin.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +31,7 @@ public class CountryController {
     }
 
     @GetMapping(value = "/country/{countryId}")
-    public Optional<Country> findById(@PathVariable int countryId) {
+    public Optional<Country> findById(@PathVariable Long countryId) {
         if (countryService.findById(countryId).isPresent()) {
             return countryService.findById(countryId);
         } else {
@@ -35,7 +41,6 @@ public class CountryController {
 
     @PostMapping(value = "/country")
     public Country save(@RequestBody Country country) {
-        country.setCountryId(0);
         countryService.save(country);
         return country;
     }
@@ -47,7 +52,7 @@ public class CountryController {
     }
 
     @RequestMapping(value = "/country/{countryId}")
-    public void deleteById(@PathVariable int countryId) {
+    public void deleteById(@PathVariable Long countryId) {
         if (countryService.findById(countryId).isPresent()) {
             countryService.deleteById(countryId);
         } else {

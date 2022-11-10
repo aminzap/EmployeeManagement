@@ -1,7 +1,7 @@
 package com.amin.service;
 
-import com.amin.entity.Department;
-import com.amin.repository.DepartmentRepository;
+import com.amin.domain.entity.Department;
+import com.amin.domain.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DepartmentServiceImp implements DepartmentService{
+public class DepartmentServiceImp implements DepartmentService {
     DepartmentRepository departmentRepository;
 
     @Autowired
@@ -24,10 +24,10 @@ public class DepartmentServiceImp implements DepartmentService{
 
     @Override
     public Optional<Department> findById(int id) {
-        if (departmentRepository.findById(id).isPresent()){
+        if (departmentRepository.findById(id).isPresent()) {
             return departmentRepository.findById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for finding: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for finding: " + id);
         }
     }
 
@@ -38,10 +38,10 @@ public class DepartmentServiceImp implements DepartmentService{
 
     @Override
     public void deleteById(int id) {
-        if(departmentRepository.findById(id).isPresent()){
+        if (departmentRepository.findById(id).isPresent()) {
             departmentRepository.deleteById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for deleting: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for deleting: " + id);
         }
     }
 }

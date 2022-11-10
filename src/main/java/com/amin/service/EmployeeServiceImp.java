@@ -1,7 +1,7 @@
 package com.amin.service;
 
-import com.amin.entity.Employee;
-import com.amin.repository.EmployeeRepository;
+import com.amin.domain.entity.Employee;
+import com.amin.domain.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeServiceImp implements EmployeeService{
+public class EmployeeServiceImp implements EmployeeService {
     EmployeeRepository employeeRepository;
 
     @Autowired
@@ -24,10 +24,10 @@ public class EmployeeServiceImp implements EmployeeService{
 
     @Override
     public Optional<Employee> findById(int id) {
-        if (employeeRepository.findById(id).isPresent()){
+        if (employeeRepository.findById(id).isPresent()) {
             return employeeRepository.findById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for finding: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for finding: " + id);
         }
     }
 
@@ -38,10 +38,10 @@ public class EmployeeServiceImp implements EmployeeService{
 
     @Override
     public void deleteById(int id) {
-        if (employeeRepository.findById(id).isPresent()){
+        if (employeeRepository.findById(id).isPresent()) {
             employeeRepository.deleteById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for deleting: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for deleting: " + id);
         }
     }
 }

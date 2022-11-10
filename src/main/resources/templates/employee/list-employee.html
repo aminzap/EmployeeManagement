@@ -1,33 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>Employees</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/}">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/employee/list}">Employee</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/job/list}">Jobs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" th:href="@{/department/list}">Departments</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-
-
+<div th:replace="~{fragment/navigation :: navbar}"></div>
 <div class="px-2">
     <h3 class="mt-1">Employee List</h3>
     <hr>
@@ -46,8 +26,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tempEmployee : ${employees}" >
-            <td th:text=" ${tempEmployee.employeeId}"/>
+        <tr th:each="tempEmployee : ${employees}">
+            <td th:text=" ${tempEmployee.id}"/>
             <td th:text=" ${tempEmployee.firstName}"/>
             <td th:text=" ${tempEmployee.lastName}"/>
             <td th:text=" ${tempEmployee.email}"/>
@@ -55,16 +35,18 @@
             <td th:text=" ${tempEmployee.hireDate}"/>
             <td th:text="${tempEmployee.department.departmentName}"/>
             <td>
-                <a th:href="@{/employee/update(employeeId=${tempEmployee.employeeId})}"
+                <a th:href="@{/employee/update(employeeId=${tempEmployee.id})}"
                    class="btn btn-primary btn-sm">Update</a>
 
-                <a th:href="@{/employee/delete(employeeId=${tempEmployee.employeeId})}"
-                   class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure to delete this employee?')))return false">Delete</a>
+                <a th:href="@{/employee/delete(employeeId=${tempEmployee.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure to delete this employee?')))return false">Delete</a>
             </td>
         </tr>
         </tbody>
 
-    </table></div>
+    </table>
+</div>
 
 
 </body>

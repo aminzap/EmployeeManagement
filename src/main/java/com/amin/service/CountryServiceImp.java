@@ -1,21 +1,17 @@
 package com.amin.service;
 
-import com.amin.entity.Country;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.amin.domain.entity.Country;
+import com.amin.domain.repository.CountryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.amin.repository.CountryRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CountryServiceImp implements CountryService{
-    CountryRepository countryRepository;
-
-    @Autowired
-    public CountryServiceImp(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
-    }
+@AllArgsConstructor
+public class CountryServiceImp implements CountryService {
+    private final CountryRepository countryRepository;
 
     @Override
     public List<Country> findAll() {
@@ -23,11 +19,11 @@ public class CountryServiceImp implements CountryService{
     }
 
     @Override
-    public Optional<Country> findById(int id) {
-        if (countryRepository.findById(id).isPresent()){
+    public Optional<Country> findById(Long id) {
+        if (countryRepository.findById(id).isPresent()) {
             return countryRepository.findById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for finding: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for finding: " + id);
         }
     }
 
@@ -37,11 +33,11 @@ public class CountryServiceImp implements CountryService{
     }
 
     @Override
-    public void deleteById(int id) {
-        if(countryRepository.findById(id).isPresent()){
+    public void deleteById(Long id) {
+        if (countryRepository.findById(id).isPresent()) {
             countryRepository.deleteById(id);
-        }else {
-            throw  new RuntimeException("This id is not valid for deleting "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for deleting " + id);
         }
     }
 }

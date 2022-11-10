@@ -1,14 +1,17 @@
 package com.amin.controller.rest;
 
 
-import com.amin.entity.Department;
+import com.amin.domain.entity.Department;
 import com.amin.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,36 +28,38 @@ public class DepartmentController {
     }
 
     @GetMapping("/department")
-    public List<Department> findAll(){
+    public List<Department> findAll() {
         return departmentService.findAll();
     }
 
     @GetMapping("/department/{departmentId}")
-    public Optional<Department> findById(@PathVariable int departmentId){
-        if (departmentService.findById(departmentId).isPresent()){
+    public Optional<Department> findById(@PathVariable int departmentId) {
+        if (departmentService.findById(departmentId).isPresent()) {
             return departmentService.findById(departmentId);
-        }else {
-            throw new RuntimeException("This department id is not valid: "+departmentId);
+        } else {
+            throw new RuntimeException("This department id is not valid: " + departmentId);
         }
     }
+
     @PostMapping(value = "/department")
-    public Department save(@RequestBody Department department){
-        department.setDepartmentId(0);
+    public Department save(@RequestBody Department department) {
         departmentService.save(department);
         return department;
     }
+
     @PutMapping(value = "/department")
-    public Department updateDepartment (@RequestBody Department department){
+    public Department updateDepartment(@RequestBody Department department) {
         departmentService.save(department);
         return department;
     }
+
     @DeleteMapping(value = "/department/{departmentId}")
-    public String deleteById(@PathVariable int departmentId){
-        if (departmentService.findById(departmentId).isPresent()){
+    public String deleteById(@PathVariable int departmentId) {
+        if (departmentService.findById(departmentId).isPresent()) {
             departmentService.deleteById(departmentId);
-            return "This department delete successfully by id: "+departmentId;
-        }else {
-            throw new RuntimeException("This id is not valid: "+departmentId);
+            return "This department delete successfully by id: " + departmentId;
+        } else {
+            throw new RuntimeException("This id is not valid: " + departmentId);
         }
     }
 }

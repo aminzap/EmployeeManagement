@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <head>
     <meta charset="UTF-8">
     <title>Add Dependent</title>
 </head>
 <body>
-    <div class="container">
-        <h3>Add Dependent</h3>
-        <hr>
-        <p class="h4 mb-4">Save Dependent</p>
-        <form action="#" th:action="@{/dependent/save}"
-                         th:object="${dependent}" method="POST">
-            <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4" placeholder="First Name">
-            <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last Name">
-            <input type="text" th:field="*{relationship}" class="form-control mb-4 col-4" placeholder="Relationship">
-            <input type="text" th:field="*{employee}" class="form-control mb-4 col-4" placeholder="Employee id">
-            <button type="submit" class="btn btn-info col-2"> Save</button>
-        </form>
+<div class="container">
+    <h3>Add Dependent</h3>
+    <hr>
+    <p class="h4 mb-4">Save Dependent</p>
+    <form action="#" th:action="@{/dependent/save}"
+          th:object="${dependent}" method="POST">
+        <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4" placeholder="First Name">
+        <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last Name">
+        <input type="text" th:field="*{relationship}" class="form-control mb-4 col-4" placeholder="Relationship">
+        <input type="text" th:field="*{employee}" class="form-control mb-4 col-4" placeholder="Employee id">
+        <button type="submit" class="btn btn-info col-2"> Save</button>
+    </form>
 
-        <hr>
-        <a th:href="@{/dependent/list}">Back to Dependent list</a>
-    </div>
+    <hr>
+    <a th:href="@{/dependent/list}">Back to Dependent list</a>
+</div>
 
 </body>
 </html>

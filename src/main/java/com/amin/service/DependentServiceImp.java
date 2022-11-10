@@ -1,7 +1,7 @@
 package com.amin.service;
 
-import com.amin.entity.Dependent;
-import com.amin.repository.DependentRepository;
+import com.amin.domain.entity.Dependent;
+import com.amin.domain.repository.DependentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +24,10 @@ public class DependentServiceImp implements DependentService {
 
     @Override
     public Optional<Dependent> findById(int id) {
-        if (dependentRepository.findById(id).isPresent()){
+        if (dependentRepository.findById(id).isPresent()) {
             return dependentRepository.findById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for finding: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for finding: " + id);
         }
     }
 
@@ -38,10 +38,10 @@ public class DependentServiceImp implements DependentService {
 
     @Override
     public void deleteById(int id) {
-        if (dependentRepository.findById(id).isPresent()){
+        if (dependentRepository.findById(id).isPresent()) {
             dependentRepository.deleteById(id);
-        }else {
-            throw new RuntimeException("This id is not valid for deleting: "+id);
+        } else {
+            throw new RuntimeException("This id is not valid for deleting: " + id);
         }
     }
 }
