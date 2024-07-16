@@ -1,7 +1,12 @@
 package com.amin.controller.normal;
 
+import com.amin.controller.mapper.CountryMapper;
+import com.amin.controller.mapper.LocationMapper;
 import com.amin.domain.entity.Location;
+import com.amin.service.CountryService;
+import com.amin.service.DTO.LocationDto;
 import com.amin.service.LocationService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +20,13 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/location")
+@AllArgsConstructor
 public class LocationNormalController {
-    LocationService locationService;
+    private final LocationService locationService;
+    private final CountryService countryService;
+    private final CountryMapper countryMapper;
+    private final LocationMapper locationMapper;
 
-    public LocationNormalController(LocationService locationService) {
-        this.locationService = locationService;
-    }
 
     @GetMapping("/list")
     public String locationList(Model model) {
@@ -32,24 +38,25 @@ public class LocationNormalController {
     @GetMapping("/add")
     public String addLocation(Model model) {
         model.addAttribute("location", new Location());
+        model.addAttribute("countryList", countryMapper.fromCountryListToCountryDtoList(countryService.findAll()));
         return "/location/add-location";
     }
 
     @PostMapping("/save")
-    public String saveLocation(@ModelAttribute("location") Location location) {
-        locationService.save(location);
+    public String saveLocation(@ModelAttribute("location") LocationDto locationDto) {
+        locationService.save(locationMapper.fromLocationDtoToLocation(locationDto));
         return "redirect:/location/list";
     }
 
     @GetMapping("/update")
-    public String updateLocation(@RequestParam("locationId") int id, Model model) {
+    public String updateLocation(@RequestParam("locationId") Long id, Model model) {
         Optional<Location> location = locationService.findById(id);
         model.addAttribute("location", location);
         return "location/location-form";
     }
 
     @GetMapping("/delete")
-    public String deleteLocation(@RequestParam("locationId") int id) {
+    public String deleteLocation(@RequestParam("locationId") Long id) {
         locationService.deleteById(id);
         return "redirect:/location/list";
     }

@@ -17,7 +17,12 @@
         <input type="text" th:field="*{postalCode}" class="form-control mb-4 col-4" placeholder="Postal Code">
         <input type="text" th:field="*{city}" class="form-control mb-4 col-4" placeholder="City">
         <input type="text" th:field="*{province}" class="form-control mb-4 col-4" placeholder="Province or State">
-        <input type="text" th:field="*{country}" class="form-control mb-4 col-4" placeholder="Country Id">
+        <select th:field="*{country}" name="country" class="form-control mb-4 col-4">
+            <option value="">Select a country</option>
+            <th:block th:each="country : ${countryList}">
+                <option th:value="${country.id}" th:text="${country.countryName}"></option>
+            </th:block>
+        </select>
         <button type="submit" class="btn btn-success col-2"> Save</button>
     </form>
     <hr>

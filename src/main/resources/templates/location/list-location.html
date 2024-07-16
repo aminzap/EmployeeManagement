@@ -27,17 +27,16 @@
         </thead>
         <tbody>
         <tr th:each="theLocation:${locations}">
-            <td th:text="${theLocation.locationId}"/>
+            <td th:text="${theLocation.id}"/>
             <td th:text="${theLocation.streetAddress}"/>
             <td th:text="${theLocation.postalCode}"/>
             <td th:text="${theLocation.city}"/>
             <td th:text="${theLocation.province}"/>
             <td th:text="${theLocation.country.countryName}"/>
             <td>
-                <a th:href="@{/location/update(locationId=${theLocation.locationId})}"
+                <a th:href="@{/location/update(locationId=${theLocation.id})}"
                    class="btn btn-primary btn-sm">Update</a>
-
-                <a th:href="@{/location/delete(locationId=${theLocation.locationId})}"
+                <a th:href="@{/location/delete(locationId=${theLocation.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="if (!(confirm('Are you sure to delete this Location?')))return false">Delete</a>
             </td>

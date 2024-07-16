@@ -30,7 +30,7 @@ public class LocationController {
     }
 
     @GetMapping(value = "/location/{locationId}")
-    public Optional<Location> findById(@PathVariable int locationId) {
+    public Optional<Location> findById(@PathVariable Long locationId) {
         if (locationService.findById(locationId).isPresent()) {
             return locationService.findById(locationId);
         } else {
@@ -51,7 +51,7 @@ public class LocationController {
     }
 
     @DeleteMapping(value = "/location/{locationId}")
-    public String deleteById(@PathVariable int locationId) {
+    public String deleteById(@PathVariable Long locationId) {
         if (locationService.findById(locationId).isPresent()) {
             locationService.deleteById(locationId);
             return "This location is deleted successfully by id: " + locationId;

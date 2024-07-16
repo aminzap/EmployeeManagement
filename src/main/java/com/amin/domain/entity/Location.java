@@ -24,21 +24,15 @@ import lombok.NoArgsConstructor;
 public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "STREET_ADDRESS")
     private String streetAddress;
 
-    @Column(name = "POSTAL_CODE")
     private String postalCode;
 
-    @Column(name = "CITY")
     private String city;
 
-    @Column(name = "PROVINCE")
     private String province;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "ID")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private Country country;
 }

@@ -23,7 +23,7 @@ public class LocationServiceImp implements LocationService {
     }
 
     @Override
-    public Optional<Location> findById(int id) {
+    public Optional<Location> findById(Long id) {
         if (locationRepository.findById(id).isPresent()) {
             return locationRepository.findById(id);
         } else {
@@ -37,7 +37,7 @@ public class LocationServiceImp implements LocationService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         if (locationRepository.findById(id).isPresent()) {
             locationRepository.deleteById(id);
         } else {
