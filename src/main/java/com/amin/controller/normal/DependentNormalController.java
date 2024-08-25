@@ -43,14 +43,14 @@ public class DependentNormalController {
     }
 
     @GetMapping("/update")
-    public String updateDependent(@RequestParam("dependentId") int id, Model model) {
-        Optional<Dependent> dependent = dependentService.findById(id);
+    public String updateDependent(@RequestParam("dependentId") Long id, Model model) {
+        Dependent dependent = dependentService.findById(id);
         model.addAttribute("dependent", dependent);
         return "dependent/dependent-form";
     }
 
     @GetMapping("/delete")
-    public String deleteDependent(@RequestParam("dependentId") int id) {
+    public String deleteDependent(@RequestParam("dependentId") Long id) {
         dependentService.deleteById(id);
         return "redirect:/dependent/list";
     }

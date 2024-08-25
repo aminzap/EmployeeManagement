@@ -43,14 +43,14 @@ public class DepartmentNormalController {
     }
 
     @GetMapping("/update")
-    public String updateDepartment(@RequestParam("departmentId") int id, Model model) {
-        Optional<Department> department = departmentService.findById(id);
+    public String updateDepartment(@RequestParam("departmentId") Long id, Model model) {
+        Department department = departmentService.findById(id);
         model.addAttribute("department", department);
         return "department/department-form";
     }
 
     @GetMapping("/delete")
-    public String deleteDepartment(@RequestParam("departmentId") int id) {
+    public String deleteDepartment(@RequestParam("departmentId") Long id) {
         departmentService.deleteById(id);
         return "redirect:/department/list";
     }

@@ -1,16 +1,12 @@
 package com.amin.service;
 
 import com.amin.domain.entity.Country;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface CountryService {
-    List<Country> findAll();
-
-    Optional<Country> findById(Long id);
-
-    void save(Country country);
-
-    void deleteById(Long id);
+@Service
+public class CountryService extends CrudService<Country, Long> {
+    public CountryService(CrudRepository<Country, Long> repository) {
+        super(repository);
+    }
 }

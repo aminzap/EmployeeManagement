@@ -1,16 +1,12 @@
 package com.amin.service;
 
 import com.amin.domain.entity.Dependent;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface DependentService {
-    public List<Dependent> findAll();
-
-    public Optional<Dependent> findById(int id);
-
-    public void save(Dependent dependent);
-
-    public void deleteById(int id);
+@Service
+public class DependentService extends CrudService<Dependent, Long> {
+    public DependentService(CrudRepository<Dependent, Long> repository) {
+        super(repository);
+    }
 }

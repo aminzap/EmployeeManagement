@@ -44,7 +44,7 @@ public class CountryNormalController {
 
     @GetMapping("/update/{countryId}")
     public String updateCountry(@PathVariable("countryId") Long id, Model model) {
-        Country country = countryService.findById(id).orElseThrow(RuntimeException::new);
+        Country country = countryService.findById(id);
         model.addAttribute("country", countryMapper.fromCountryToCountryDto(country));
         return "country/country-form";
     }

@@ -1,16 +1,13 @@
 package com.amin.service;
 
 import com.amin.domain.entity.Employee;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+@Service
+public class EmployeeService extends CrudService<Employee, Long> {
 
-public interface EmployeeService {
-    public List<Employee> findAll();
-
-    public Optional<Employee> findById(int id);
-
-    public void save(Employee employee);
-
-    public void deleteById(int id);
+    public EmployeeService(CrudRepository<Employee, Long> repository) {
+        super(repository);
+    }
 }

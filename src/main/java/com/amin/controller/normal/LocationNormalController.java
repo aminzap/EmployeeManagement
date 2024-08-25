@@ -50,7 +50,7 @@ public class LocationNormalController {
 
     @GetMapping("/update")
     public String updateLocation(@RequestParam("locationId") Long id, Model model) {
-        Optional<Location> location = locationService.findById(id);
+        Location location = locationService.findById(id);
         model.addAttribute("location", location);
         return "location/location-form";
     }

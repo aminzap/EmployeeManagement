@@ -2,6 +2,7 @@ package com.amin.controller.normal;
 
 import com.amin.domain.entity.Employee;
 import com.amin.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,9 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/employee")
+@RequiredArgsConstructor
 public class EmployeeNormalController {
-    EmployeeService employeeService;
-
-    public EmployeeNormalController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    private final EmployeeService employeeService;
 
     @GetMapping("/list")
     public String list(Model model) {
@@ -43,14 +41,14 @@ public class EmployeeNormalController {
     }
 
     @GetMapping("/update")
-    public String updateEmployee(@RequestParam("employeeId") int id, Model model) {
-        Optional<Employee> employee = employeeService.findById(id);
+    public String updateEmployee(@RequestParam("employeeId") Long id, Model model) {
+        Employee employee = employeeService.findById(id);
         model.addAttribute("employee", employee);
         return "employee/employee-form";
     }
 
     @GetMapping("/delete")
-    public String deleteEmployee(@RequestParam("employeeId") int id) {
+    public String deleteEmployee(@RequestParam("employeeId") Long id) {
         employeeService.deleteById(id);
         return "redirect:/employee/list";
     }

@@ -1,16 +1,12 @@
 package com.amin.service;
 
 import com.amin.domain.entity.Department;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface DepartmentService {
-    public List<Department> findAll();
-
-    public Optional<Department> findById(int id);
-
-    public void save(Department department);
-
-    public void deleteById(int id);
+@Service
+public class DepartmentService extends CrudService<Department, Long> {
+    public DepartmentService(CrudRepository<Department, Long> repository) {
+        super(repository);
+    }
 }

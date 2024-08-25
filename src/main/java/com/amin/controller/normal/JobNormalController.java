@@ -31,8 +31,7 @@ public class JobNormalController {
 
     @GetMapping("/add")
     public String addJob(Model model) {
-        Job job = new Job();
-        model.addAttribute("job", job);
+        model.addAttribute("job", new Job());
         return "job/add-job";
     }
 
@@ -43,14 +42,14 @@ public class JobNormalController {
     }
 
     @GetMapping("/update")
-    public String updateJob(@RequestParam("jobId") int id, Model model) {
-        Optional<Job> job = jobService.findById(id);
+    public String updateJob(@RequestParam("jobId") Long id, Model model) {
+        Job job = jobService.findById(id);
         model.addAttribute("job", job);
         return "job/job-form";
     }
 
     @GetMapping("/delete")
-    public String deleteJob(@RequestParam("jobId") int id) {
+    public String deleteJob(@RequestParam("jobId") Long id) {
         jobService.deleteById(id);
         return "redirect:/job/list";
     }

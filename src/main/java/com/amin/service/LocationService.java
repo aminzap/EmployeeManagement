@@ -1,16 +1,12 @@
 package com.amin.service;
 
 import com.amin.domain.entity.Location;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface LocationService {
-    public List<Location> findAll();
-
-    public Optional<Location> findById(Long id);
-
-    public void save(Location location);
-
-    public void deleteById(Long id);
+@Service
+public class LocationService extends CrudService<Location, Long> {
+    public LocationService(CrudRepository<Location, Long> repository) {
+        super(repository);
+    }
 }
